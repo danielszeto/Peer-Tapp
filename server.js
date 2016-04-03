@@ -67,6 +67,7 @@ app.put('/api/beers/:id', function (req, res) {
         foundBeer.name = req.body.name;
         foundBeer.type = req.body.type;
         foundBeer.style = req.body.style;
+        foundBeer.image = req.body.image;
         foundBeer.upvotes = req.body.upvotes;
         foundBeer.save(function (err, saved){
             if (err) { console.log(err);}

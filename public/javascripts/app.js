@@ -47,6 +47,22 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
 
 app.controller('HomeController', HomeController);
 
+app.service('Beer', function($resource) {
+  return $resource('http://localhost:3000/api/beers/:id', { id: '@_id' }, {
+    update: {
+      method: 'PUT' // this method issues a PUT request
+    }
+  });
+});
+
+app.service('Comment', function($resource) {
+  return $resource('http://localhost:3000/api/comments/:id', { id: '@_id' }, {
+    update: {
+      method: 'PUT' // this method issues a PUT request
+    }
+  });
+});
+
 	function HomeController(Beer, Comment, $scope) {
 		this.newBeer = {};
     this.beers = Beer.query();
@@ -93,19 +109,3 @@ app.controller('HomeController', HomeController);
       console.log('saved comment');
     }
 }	
-
-app.service('Beer', function($resource) {
-  return $resource('http://localhost:3000/api/beers/:id', { id: '@_id' }, {
-    update: {
-      method: 'PUT' // this method issues a PUT request
-    }
-  });
-});
-
-app.service('Comment', function($resource) {
-  return $resource('http://localhost:3000/api/comments/:id', { id: '@_id' }, {
-    update: {
-      method: 'PUT' // this method issues a PUT request
-    }
-  });
-});
